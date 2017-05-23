@@ -52,7 +52,7 @@ let postAktivnost = (req, res) => {
   let bodovi = req.body.bodovi
   let uslov = req.body.uslov
 
-  let sql = `INSERT INTO Aktivnost(ID, Predmet_ID, Naziv, Maks_bodova, Uslov) VALUES ((SELECT MAX(ID) FROM Aktivnost) + 1, ${predmet_id}, '${naziv}', ${bodovi}, ${uslov})`
+  let sql = `exec sp_aktivnost ${predmet_id},${naziv},${bodovi},${uslov}`
   cursor.query(sql, (err, result) => {
     if(err){
       console.trace(err)
