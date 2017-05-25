@@ -25,6 +25,7 @@ app.use(function(req, res, next){
 
 require('./predmet')(app)
 require('./student')(app)
+require('./aktivnost')(app)
 
 let callback = () => {
   port = 3030

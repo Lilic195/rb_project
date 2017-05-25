@@ -2,7 +2,7 @@ var db = require('./db')
 
 let getStudenti = (req, res) => {
   let cursor = db.cursor()
-  let sql = `SELECT * FROM Student`
+  let sql = `SELECT * FROM v_studenti`
 
   cursor.query(sql , (err, result) => {
     if(err){
@@ -36,7 +36,6 @@ let getStudent = (req, res) => {
       }
      let data = result.recordset
      recordSet.Predmeti = data
-     console.log(recordSet)
      res.send(recordSet)
    })
   })
@@ -72,8 +71,27 @@ let getAktivnost = (req, res) => {
   })
 }
 
+let postAktivnost = (req, res) => {
+  let cursor = db.cursor()
+  let student_id = req.body.student_id
+  let aktivnost_id = req.body.aktivnost_id
+  let bodovi = req.body.bodovi
+  let polozio = req.body.polozio
+
+  let sql = `exec sp_bodovi ${student_id},${aktivnost_id},${bodovi},${polozio}`
+  console.log(sql)
+  cursor.query(sql, (err, result) => {
+    if(err){
+      console.trace(err)
+      return res.status(404).send(err)
+    }
+    res.send({ok: true})
+  })
+}
+
 module.exports = (app) => {
   app.get('/studenti', getStudenti)
   app.get('/student/:id', getStudent)
   app.get('/student_aktivnost', getAktivnost)
+  app.post('/student_aktivnost', postAktivnost)
 }
