@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <h3>Dodaj aktivnost</h3>
-        <form>
-            <select class="form-control" v-model="predmet">
+        <form id="aktivnost">
+            <select class="form-control" v-model="predmet" required>
                 <option value="" disabled selected hidden>Izaberi predmet</option>
                 <option v-for="item in predmeti" :value="item.ID">
                     {{ item.Naziv }}
@@ -10,14 +10,15 @@
             </select>
             <br/>
             <div class="form-group">
-                <input type="text" v-model="naziv" class="form-control" name="naziv" placeholder="Naziv aktivnosti">
+                <input type="text" v-model="naziv" class="form-control" name="naziv" placeholder="Naziv aktivnosti" required>
             </div>
             <div class="form-group">
-                <input type="number" v-model="bodovi" class="form-control" name="bodovi" placeholder="Bodovi">
+                <input type="number" v-model="bodovi" class="form-control" name="bodovi" placeholder="Bodovi" required>
             </div>
             <div class="form-group">
-                <input type="number" v-model="uslov" class="form-control" name="uslov" placeholder="Uslov">
+                <input type="number" v-model="uslov" class="form-control" name="uslov" placeholder="Uslov" required>
             </div>
+            <p id="message"></p>
             <div class="form-group">
                 <input v-on:click="addActivity" class="btn btn-submit" type="submit" value="Dodaj aktivnost">
             </div>
@@ -73,8 +74,11 @@
                     })
                     .done((data, err) => {
                         console.log(data);
+                        document.getElementById("message").innerHTML = "Uspesno dodato!";
+                        document.getElementById("aktivnost").reset();
                     })
                     .fail((err) => {
+                        document.getElementById("message").innerHTML = "Greska prilikom dodavanja!";
                         console.log(err)
                     })
             }

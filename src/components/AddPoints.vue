@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h3>Dodaj bodove</h3>
-        <form>
+        <form id="bodovi">
             <select class="form-control" v-model="predmet" v-on:change="fetchActivities" required>
                 <option value="" disabled selected hidden>Izaberi predmet</option>
                 <option v-for="item in predmeti" :value="item.ID">
@@ -26,6 +26,7 @@
             <div class="form-group">
                 <input type="number" v-model="bodovi" class="form-control" name="bodovi" placeholder="Bodovi" required>
             </div>
+            <p id="message"></p>
             <div class="form-group">
                 <input v-on:click="addPoints" class="btn btn-submit" type="submit" value="Dodaj aktivnost">
             </div>
@@ -113,9 +114,12 @@
                     })
                     .done((data, err) => {
                         console.log(data);
+                        document.getElementById("bodovi").reset();
+                        document.getElementById("message").innerHTML = "Uspesno dodato!";
                     })
                     .fail((err) => {
                         console.log(err)
+                        document.getElementById("message").innerHTML = "Greska prilikom dodavanja";
                     })
             }
         }
