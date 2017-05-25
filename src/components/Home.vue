@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <select class="form-control" v-model="predmet" v-on:change="fetchActivities">
+            <option value="" disabled selected hidden>Izaberi predmet</option>
             <option v-for="item in predmeti" :value="item.ID">
                 {{ item.Naziv }}
             </option>

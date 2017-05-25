@@ -24,6 +24,15 @@
                         <li>
                             <router-link to="studenti">Studenti</router-link>
                         </li>
+                        <li>
+                            <router-link to="dodajaktivnost">Dodaj aktivnost</router-link>
+                        </li>
+                        <li>
+                            <router-link to="dodajbodove">Dodaj bodove</router-link>
+                        </li>
+                        <li>
+                            <router-link to="obrisi">Obrisi</router-link>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

@@ -1,11 +1,13 @@
 <template>
     <div class="container">
         <select class="form-control" v-model="student" v-on:change="fetchStudentSubjects">
+            <option value="" disabled selected hidden>Izaberi studenta</option>
             <option v-for="item in studenti" :value="item.ID">
                 {{ item.Ime }} {{item.Prezime}} {{item.Broj_indeksa}}
             </option>
         </select>
         <select class="form-control" v-model="predmet" v-on:change="fetchActivities">
+            <option value="" disabled selected hidden>Izaberi predmet</option>
             <option v-for="item in predmeti" :value="item.ID">
                 {{ item.Naziv }}
             </option>
