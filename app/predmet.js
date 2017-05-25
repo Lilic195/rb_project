@@ -65,5 +65,5 @@ let postAktivnost = (req, res) => {
 module.exports = (app) => {
     app.get('/predmeti', getPredmeti)
     app.get('/predmet/:id', getPredmet)
-    app.post('/predmet/:id', postAktivnost)
+    app.post('/aktivnost', postAktivnost)
 }
